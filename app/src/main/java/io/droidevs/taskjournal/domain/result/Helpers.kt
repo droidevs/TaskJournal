@@ -1,7 +1,5 @@
 package io.droidevs.taskjournal.domain.result
 
-import io.droidevs.onlinelibrary.domain.result.Result
-import io.droidevs.onlinelibrary.domain.result.RootError
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

@@ -1,8 +1,5 @@
 package io.droidevs.taskjournal.domain.result
 
-import io.droidevs.onlinelibrary.domain.result.Result
-import io.droidevs.onlinelibrary.domain.result.RootError
-
 
 @DslMarker
 annotation class ResultBuild

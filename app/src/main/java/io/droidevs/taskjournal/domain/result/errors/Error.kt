@@ -1,6 +1,6 @@
 package io.droidevs.taskjournal.domain.result.errors
 
-import io.droidevs.onlinelibrary.domain.result.RootError
+import io.droidevs.taskjournal.domain.result.RootError
 
 sealed interface Error
 

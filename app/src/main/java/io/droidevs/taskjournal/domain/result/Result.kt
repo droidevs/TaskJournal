@@ -1,4 +1,4 @@
-package io.droidevs.onlinelibrary.domain.result
+package io.droidevs.taskjournal.domain.result
 
 import io.droidevs.taskjournal.domain.result.errors.Error
 

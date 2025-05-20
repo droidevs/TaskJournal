@@ -7,7 +7,7 @@ import io.droidevs.taskjournal.domain.result.runCatchingResult
 import io.droidevs.taskjournal.domain.result.runCatchingWithResult
 import kotlinx.coroutines.flow.Flow
 import java.io.IOException
-import io.droidevs.onlinelibrary.domain.result.Result
+import io.droidevs.taskjournal.domain.result.Result
 
 suspend fun <T> runCatchingPreference(
     block: suspend () -> T

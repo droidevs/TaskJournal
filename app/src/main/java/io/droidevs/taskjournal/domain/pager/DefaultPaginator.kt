@@ -1,6 +1,6 @@
 package io.droidevs.taskjournal.domain.pager
 
-import io.droidevs.onlinelibrary.domain.result.Result
+import io.droidevs.taskjournal.domain.result.Result
 import io.droidevs.taskjournal.domain.result.errors.DataError
 import io.droidevs.taskjournal.domain.result.onFailureSuspend
 import io.droidevs.taskjournal.domain.result.onSuccessSuspend

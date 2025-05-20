@@ -12,7 +12,7 @@ import io.droidevs.taskjournal.domain.result.errors.DatabaseError
 import io.droidevs.taskjournal.domain.result.runCatchingResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import io.droidevs.onlinelibrary.domain.result.Result
+import io.droidevs.taskjournal.domain.result.Result
 import io.droidevs.taskjournal.domain.result.asResultFlow
 import io.droidevs.taskjournal.domain.result.runCatchingWithResult
 
