@@ -2,7 +2,9 @@ package io.droidevs.taskjournal.domain.result
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.retry
 import java.io.IOException
 

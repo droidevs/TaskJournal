@@ -1,11 +1,14 @@
 package io.droidevs.taskjournal.domain.result
 
+
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.transform
+import io.droidevs.taskjournal.domain.result.errors.UnknownError
+import okhttp3.Route
 
 // Transformations
 fun <D, E : RootError, R> Result<D, E>.map(transform: (D) -> R): Result<R, E> =
@@ -53,10 +56,15 @@ fun <D, E : RootError> Flow<Result<D, E>>.onFailureWithResult(
         emit(result)
 }
 
-fun <D, E : RootError> Flow<Result<D, E>>.onSuccess(
-    transform: (Throwable) -> E,
+fun <D> Flow<Result<D, RootError>>.onSuccess(
+    transform: (Throwable) -> RootError = { throwable ->
+        // Default implementation converts Throwable to RootError
+        UnknownError(
+            cause = throwable
+        )
+    },
     action: suspend (D) -> Unit
-): Flow<Result<D, E>> = transform { result ->
+): Flow<Result<D, RootError>> = transform { result ->
     when (result) {
         is Result.Success -> {
             try {
@@ -70,10 +78,15 @@ fun <D, E : RootError> Flow<Result<D, E>>.onSuccess(
     }
 }
 
-fun <D, E : RootError> Flow<Result<D, E>>.onFailure(
-    transform: (Throwable) -> E,
-    action: suspend (E) -> Unit
-): Flow<Result<D, E>> = transform { result ->
+fun <D> Flow<Result<D, RootError>>.onFailure(
+    transform: (Throwable) -> RootError = { throwable ->
+        // Default implementation converts Throwable to RootError
+        UnknownError(
+            cause = throwable
+        )
+    },
+    action: suspend (RootError) -> Unit
+): Flow<Result<D, RootError>> = transform { result ->
     when (result) {
         is Result.Failure -> {
             try {
@@ -111,12 +124,7 @@ fun <T, E : RootError> Flow<Result<T, E>>.catchResult(
 
 fun <T, R, E : RootError> Flow<Result<T, E>>.mapResult(
     transform: (T) -> R
-): Flow<Result<R, E>> = map { result ->
-    when (result) {
-        is Result.Success -> Result.Success(transform(result.data))
-        is Result.Failure -> Result.Failure(result.error)
-    }
-}
+): Flow<Result<R, E>> = map { result -> result.map(transform) }
 
 fun <T, E : RootError, R> Flow<Result<T, E>>.flatMapResult(
     transform: (T) -> Flow<Result<R, E>>

@@ -33,6 +33,37 @@ sealed class DatabaseError(open val cause: Throwable? = null) : DataError {
     class NoElementFound : DatabaseError()
 
 }
+sealed class NetworkError(
+    open val cause: Throwable? = null
+) : DataError {
+
+    data class NotFound(
+        override val cause: Throwable? = null
+    ): NetworkError(cause)
+
+    data class RateLimitExceeded(
+        override val cause: Throwable? = null
+    ) : NetworkError(cause)
+    data class ClientError(
+        override val cause: Throwable? = null
+    ) : NetworkError(cause)
+
+    data class ServerError(
+        override val cause: Throwable? = null
+    ) : NetworkError(cause)
+
+    data class ConnectionError(
+        override val cause: Throwable? = null
+    ) : NetworkError(cause = cause)
+
+    data class SerializationError(
+        override val cause: Throwable? = null
+    ) : NetworkError( cause = cause)
+
+    data class UnknownError(
+        override val cause: Throwable? = null
+    ) : NetworkError(cause = cause)
+}
 
 sealed class PreferenceError : DataError {
     data class ReadError(val cause: Exception) : PreferenceError()

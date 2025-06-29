@@ -7,11 +7,11 @@ import io.droidevs.taskjournal.domain.result.onSuccessSuspend
 
 open class DefaultPaginator<Key,Item>(
     val initialKey : Key,
-    private inline val onLoadUpdated : (Boolean) -> Unit,
-    private inline val onRequest : suspend (nextKey : Key) -> Result<List<Item>, DataError>,
-    private inline val getNextKey : suspend (key: Key, items : List<Item>) -> Key,
-    private inline val onError : suspend (error : DataError) -> Unit,
-    private inline val onSuccess : (items : List<Item> , newKey : Key) -> Unit
+    private val onLoadUpdated : (Boolean) -> Unit,
+    private val onRequest : suspend (nextKey : Key) -> Result<List<Item>, DataError>,
+    private val getNextKey : suspend (key: Key, items : List<Item>) -> Key,
+    private val onError : suspend (error : DataError) -> Unit,
+    private val onSuccess : (items : List<Item> , newKey : Key) -> Unit
 ) : Paginator<Key, Item> {
 
 

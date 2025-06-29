@@ -1,25 +1,25 @@
 package io.droidevs.taskjournal.domain.pager
 
-import kotlinx.coroutines.flow.MutableSharedFlow
 import io.droidevs.taskjournal.domain.result.Result
 import io.droidevs.taskjournal.domain.result.errors.DataError
 import io.droidevs.taskjournal.domain.result.onFailure
 import io.droidevs.taskjournal.domain.result.onSuccessSuspend
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 
 open class FlowPaginator<Key, Item>(
     private val initialKey: Key,
-    private inline val onRequest: suspend (nextKey: Key) -> Result<List<Item>, DataError>,
-    private inline val getNextKey: suspend (key: Key, items: List<Item>) -> Key
+    private  val onRequest: suspend (nextKey: Key) -> Result<List<Item>, DataError>,
+    private val getNextKey: suspend (key: Key, items: List<Item>) -> Key
 ) : Paginator<Key, Item> {
 
     private var currentKey = initialKey
     private var isMakingRequest = false
 
     private val _paginatorFlow = MutableSharedFlow<List<Item>>(
-        replay = 10,
+        replay = 0,
         extraBufferCapacity = 64
     )
     val paginatorFlow: SharedFlow<List<Item>> = _paginatorFlow

@@ -10,7 +10,9 @@ fun NoteEntity.toDomain(): Note {
         title = title,
         content = content,
         createdAt = createdAt,
-        updatedAt = updatedAt
+        updatedAt = updatedAt,
+        isMarkdown = isMarkdown,
+        isDeleted = isDeleted
     )
 }
 
@@ -19,6 +21,8 @@ fun Note.toEntity(): NoteEntity {
         id = id,
         title = title,
         content = content,
+        isMarkdown = isMarkdown,
+        isDeleted = isDeleted,
         createdAt = createdAt,
         updatedAt = updatedAt
     )
