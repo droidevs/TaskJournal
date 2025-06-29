@@ -19,8 +19,11 @@ class CategoryRepositoryImpl @Inject constructor(
     private val dao: CategoryDao
 ) : CategoryRepository {
 
-    override fun getAllCategories(): Flow<Result<List<Category>, DatabaseError>> {
-        return dao.getAllCategories()
+    override fun getAllCategories(
+        page: Int,
+        pageSize: Int
+    ): Flow<Result<List<Category>, DatabaseError>> {
+        return dao.getAllCategories(offset = (page - 1) * pageSize, limit = pageSize)
             .map { entities ->
                 Result.Success(entities.map { it.toDomainModel() })
             }
@@ -59,8 +62,12 @@ class CategoryRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun searchCategories(query: String): Flow<Result<List<Category>, DatabaseError>> {
-        return dao.searchCategories(query)
+    override fun searchCategories(
+        query: String,
+        page: Int,
+        pageSize: Int
+    ): Flow<Result<List<Category>, DatabaseError>> {
+        return dao.searchCategories(query = query, offset = (page - 1) * pageSize, limit = pageSize)
             .map { entities ->
                 Result.Success(entities.map { it.toDomainModel() })
             }

@@ -1,5 +1,6 @@
 package io.droidevs.taskjournal.data.local.entity
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
@@ -27,12 +28,20 @@ import java.util.Date
 data class NoteEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
+    @ColumnInfo(name = "title")
     val title: String,
+    @ColumnInfo(name = "content")
     val content: String,
+    @ColumnInfo(name = "is_markdown")
     val isMarkdown: Boolean = true,
+    @ColumnInfo(name = "is_deleted")
     val isDeleted: Boolean = false,
+    @ColumnInfo(name = "created_at")
     val createdAt: Date,
+    @ColumnInfo(name = "updated_at")
     val updatedAt: Date,
+    @ColumnInfo(name = "is_pinned")
     val isPinned: Boolean = false,
+    @ColumnInfo(name = "category_id")
     val categoryId: Long? = null
 )

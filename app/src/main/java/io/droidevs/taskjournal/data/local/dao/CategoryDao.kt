@@ -6,8 +6,11 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CategoryDao {
-    @Query("SELECT * FROM categories ORDER BY name ASC")
-    fun getAllCategories(): Flow<List<CategoryEntity>>
+    @Query("SELECT * FROM categories ORDER BY name ASC LIMIT :limit OFFSET :offset")
+    fun getAllCategories(
+        offset: Int,
+        limit: Int
+    ): Flow<List<CategoryEntity>>
 
     @Query("SELECT * FROM categories WHERE id = :id")
     fun getCategoryById(id: Long): Flow<CategoryEntity?>
@@ -24,6 +27,10 @@ interface CategoryDao {
     @Query("DELETE FROM categories WHERE id = :id")
     suspend fun deleteCategoryById(id: Long)
 
-    @Query("SELECT * FROM categories WHERE name LIKE '%' || :query || '%' ORDER BY name ASC")
-    fun searchCategories(query: String): Flow<List<CategoryEntity>>
+    @Query("SELECT * FROM categories WHERE name LIKE '%' || :query || '%' ORDER BY name ASC LIMIT :limit OFFSET :offset")
+    fun searchCategories(
+        query: String,
+        offset: Int,
+        limit: Int
+    ): Flow<List<CategoryEntity>>
 } 

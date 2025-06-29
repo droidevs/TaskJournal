@@ -2,7 +2,7 @@ package io.droidevs.taskjournal.domain.dispatchers
 
 import kotlinx.coroutines.CoroutineDispatcher
 
-interface CoroutineDispatcherProvider {
+interface AppDispatchersProvider {
     val main: CoroutineDispatcher
     val io: CoroutineDispatcher
     val default: CoroutineDispatcher

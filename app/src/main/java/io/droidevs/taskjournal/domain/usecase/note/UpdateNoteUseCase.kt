@@ -9,11 +9,12 @@ import io.droidevs.taskjournal.domain.result.errors.DatabaseError
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class DeleteNoteUseCase @Inject constructor(
+class UpdateNoteUseCase @Inject constructor(
     private val repository: NoteRepository,
-    private val dispatchersProvider: AppDispatchersProvider
+    private val dispatchers: AppDispatchersProvider
 ) {
-    suspend operator fun invoke(note: Note): Result<Unit, DatabaseError> = withContext(dispatchersProvider.io) {
-        repository.deleteNote(note)
-    }
+    suspend operator fun invoke(note: Note): Result<Unit, DatabaseError> =
+        withContext(dispatchers.io) {
+            repository.updateNote(note)
+        }
 } 
