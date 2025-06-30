@@ -6,6 +6,7 @@ import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import io.droidevs.taskjournal.domain.model.Note
+import java.time.LocalDateTime
 import java.util.Date
 
 @Entity(
@@ -32,14 +33,12 @@ data class NoteEntity(
     val title: String,
     @ColumnInfo(name = "content")
     val content: String,
-    @ColumnInfo(name = "is_markdown")
-    val isMarkdown: Boolean = true,
     @ColumnInfo(name = "is_deleted")
     val isDeleted: Boolean = false,
     @ColumnInfo(name = "created_at")
-    val createdAt: Date,
+    val createdAt: LocalDateTime,
     @ColumnInfo(name = "updated_at")
-    val updatedAt: Date,
+    val updatedAt: LocalDateTime,
     @ColumnInfo(name = "is_pinned")
     val isPinned: Boolean = false,
     @ColumnInfo(name = "category_id")

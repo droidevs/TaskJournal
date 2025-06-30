@@ -1,15 +1,14 @@
 package io.droidevs.taskjournal.domain.model
 
+import java.time.LocalDateTime
 import java.util.Date
 
 data class Note(
     val id: Long = 0,
     val title: String,
-    val  isMarkdown: Boolean,
-    val isDeleted: Boolean,
     val content: String,
-    val createdAt: Date,
-    val updatedAt: Date,
+    val createdAt: LocalDateTime,
+    val updatedAt: LocalDateTime,
     val isPinned: Boolean = false,
-    val categoryId: Long? = null
+    val category : Category? = null
 ) 

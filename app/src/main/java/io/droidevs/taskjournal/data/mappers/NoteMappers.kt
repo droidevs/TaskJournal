@@ -1,6 +1,7 @@
 package io.droidevs.taskjournal.data.mappers
 
 import io.droidevs.taskjournal.data.local.entity.NoteEntity
+import io.droidevs.taskjournal.data.local.entity.NoteWithCategory
 import io.droidevs.taskjournal.domain.model.Note
 
 
@@ -10,9 +11,7 @@ fun NoteEntity.toDomain(): Note {
         title = title,
         content = content,
         createdAt = createdAt,
-        updatedAt = updatedAt,
-        isMarkdown = isMarkdown,
-        isDeleted = isDeleted
+        updatedAt = updatedAt
     )
 }
 
@@ -21,9 +20,20 @@ fun Note.toEntity(): NoteEntity {
         id = id,
         title = title,
         content = content,
-        isMarkdown = isMarkdown,
-        isDeleted = isDeleted,
         createdAt = createdAt,
-        updatedAt = updatedAt
+        updatedAt = updatedAt,
+        categoryId = category?.id
+    )
+}
+
+fun NoteWithCategory.toDomain(): Note{
+    return Note(
+        id = note.id,
+        title = note.title,
+        content = note.content,
+        createdAt = note.createdAt,
+        updatedAt = note.updatedAt,
+        isPinned = note.isPinned,
+        category = category?.toDomainModel()
     )
 }

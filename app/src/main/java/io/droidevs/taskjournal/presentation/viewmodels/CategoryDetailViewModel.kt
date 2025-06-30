@@ -21,6 +21,7 @@ import io.droidevs.taskjournal.domain.usecase.category.CategoryUseCases
 import io.droidevs.taskjournal.presentation.core.actions.CategoryDetailsScreenAction
 import io.droidevs.taskjournal.presentation.core.events.CategoryDetailsScreenEvent
 import io.droidevs.taskjournal.presentation.core.state.CategoryDetailsScreenState
+import io.droidevs.taskjournal.presentation.models.mappers.toUiModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -55,7 +56,7 @@ class CategoryDetailViewModel @Inject constructor(
         viewModelScope.launch {
             useCases.getById(categoryId).collect { result ->
                 result.onSuccess { category ->
-                    _state.update { it.copy(category = category) }
+                    _state.update { it.copy(category = category?.toUiModel()) }
                 }.onFailure { error ->
                     _state.update { it.copy(error = error) }
                 }
