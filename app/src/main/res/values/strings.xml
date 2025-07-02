@@ -1,3 +1,71 @@
 <resources>
     <string name="app_name">Task Journal</string>
+
+    <plurals name="rp_format_end_count" comment="Goes after a recurrence that ends after a number of events. The number argument specifies this number.">
+        <item quantity="one">for %d event</item>
+        <item quantity="few">for %d events</item>
+        <item quantity="many">for %d events</item>
+        <item quantity="other">for %d events</item>
+    </plurals>
+
+    <string-array name="rp_format_monthly_ordinal">
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">first</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">second</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">third</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">fourth</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">last</item>
+    </string-array>
+
+    <string name="rp_format_end_date" comment="Goes after a recurrence that ends on a date. The string argument specifies this date.">until %s</string>
+
+    <string name="rp_format_monthly_same_day" comment="Used for a monthly recurrence that happens on the same day of each month">on the same day each month</string>
+    <string name="rp_format_monthly_last_day" comment="Used for a monthly recurrence that happens on the last day of each month">on the last day of the month</string>
+
+    <string-array name="rp_days_of_week_abbr3" comment="Use in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.">
+        <item comment="2-4 letters for enumerating days of the week. Use correct case. (Sunday)">Sun</item>
+        <item comment="2-4 letters for enumerating days of the week. Use correct case. (Monday)">Mon</item>
+        <item comment="2-4 letters for enumerating days of the week. Use correct case. (Tuesday)">Tue</item>
+        <item comment="2-4 letters for enumerating days of the week. Use correct case. (Wednesday)">Wed</item>
+        <item comment="2-4 letters for enumerating days of the week. Use correct case. (Thursday)">Thu</item>
+        <item comment="2-4 letters for enumerating days of the week. Use correct case. (Friday)">Fri</item>
+        <item comment="2-4 letters for enumerating days of the week. Use correct case. (Saturday)">Sat</item>
+    </string-array>
+    <string name="rp_format_weekly_option" comment="The string argument is replaced with a list of days of week.">on %s</string>
+
+    <string name="rp_format_weekly_all" comment="Used for a weekly recurrence that happens on every day of the week instead of a list of days.">every day of the week</string>
+
+    <plurals name="rp_format_day" comment="Text for a daily recurrence. The number argument is the frequency.">
+        <item quantity="one">Every day</item>
+        <item quantity="few">Every %d days</item>
+        <item quantity="many">Every %d days</item>
+        <item quantity="other">Every %d days</item>
+    </plurals>
+    <plurals name="rp_format_week" comment="Text for a weekly recurrence. The number argument is the frequency.">
+        <item quantity="one">Every week</item>
+        <item quantity="few">Every %d weeks</item>
+        <item quantity="many">Every %d weeks</item>
+        <item quantity="other">Every %d weeks</item>
+    </plurals>
+    <plurals name="rp_format_month" comment="Text for a monthly recurrence. The number argument is the frequency.">
+        <item quantity="one">Every month</item>
+        <item quantity="few">Every %d months</item>
+        <item quantity="many">Every %d months</item>
+        <item quantity="other">Every %d months</item>
+    </plurals>
+    <plurals name="rp_format_year" comment="Text for a yearly recurrence. The number argument is the frequency.">
+        <item quantity="one">Every year</item>
+        <item quantity="few">Every %d years</item>
+        <item quantity="many">Every %d years</item>
+        <item quantity="other">Every %d years</item>
+    </plurals>
+    <string name="rp_format_none" comment="Text for no recurrence.">Does not repeat</string>
+
+    <string name="rp_format_monthly_sun" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Sunday)">on every %s Sunday</string>
+    <string name="rp_format_monthly_mon" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Monday)">on every %s Monday</string>
+    <string name="rp_format_monthly_tue" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Tuesday)">on every %s Tuesday</string>
+    <string name="rp_format_monthly_wed" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Wednesday)">on every %s Wednesday</string>
+    <string name="rp_format_monthly_thu" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Thursday)">on every %s Thursday</string>
+    <string name="rp_format_monthly_fri" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Friday)">on every %s Friday</string>
+    <string name="rp_format_monthly_sat" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Saturday)">on every %s Saturday</string>
+
 </resources>

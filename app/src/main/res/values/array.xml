@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="rp_format_monthly_same_week">
+        <item>@string/rp_format_monthly_sun</item>
+        <item>@string/rp_format_monthly_mon</item>
+        <item>@string/rp_format_monthly_tue</item>
+        <item>@string/rp_format_monthly_wed</item>
+        <item>@string/rp_format_monthly_thu</item>
+        <item>@string/rp_format_monthly_fri</item>
+        <item>@string/rp_format_monthly_sat</item>
+    </string-array>
+</resources>

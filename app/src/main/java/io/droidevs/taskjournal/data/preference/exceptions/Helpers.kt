@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import java.io.IOException
 import io.droidevs.taskjournal.domain.result.Result
 
+
 suspend fun <T> runCatchingPreference(
     block: suspend () -> T
 ) : Result<T, PreferenceError> = runCatchingResult(

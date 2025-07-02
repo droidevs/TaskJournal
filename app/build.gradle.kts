@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     //alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
+    id("kotlin-parcelize")  // Enables Parcelable generation
 }
 
 android {
@@ -73,6 +74,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.window)
+    implementation(libs.androidx.biometric.ktx)
     ksp(libs.androidx.room.compiler)
 
     // Hilt
@@ -97,6 +99,8 @@ dependencies {
     // Image Loading
     implementation(libs.coil.compose)
 
+    // Biometrics
+    implementation(libs.androidx.biometric) // Latest stable version
     // Networking
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
