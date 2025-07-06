@@ -1,4 +1,4 @@
-package io.droidevs.taskjournal.presentation.settings.components
+package io.droidevs.taskjournal.presentation.ui.settings.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,10 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import io.droidevs.taskjournal.presentation.settings.LocalSettingsGroupEnabled
-import io.droidevs.taskjournal.presentation.settings.SettingsTileColors
-import io.droidevs.taskjournal.presentation.settings.SettingsTileDefaults
-import io.droidevs.taskjournal.presentation.settings.SettingsTileScaffold
+import io.droidevs.taskjournal.presentation.ui.settings.LocalSettingsGroupEnabled
+import io.droidevs.taskjournal.presentation.ui.settings.SettingsTileColors
+import io.droidevs.taskjournal.presentation.ui.settings.SettingsTileDefaults
+import io.droidevs.taskjournal.presentation.ui.settings.SettingsTileScaffold
 
 @Composable
 @Suppress("LongParameterList")

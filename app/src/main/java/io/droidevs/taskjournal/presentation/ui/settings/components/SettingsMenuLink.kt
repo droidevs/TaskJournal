@@ -1,4 +1,4 @@
-package io.droidevs.taskjournal.presentation.settings.components
+package io.droidevs.taskjournal.presentation.ui.settings.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.runtime.Composable
@@ -6,10 +6,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.SemanticsPropertyReceiver
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
-import io.droidevs.taskjournal.presentation.settings.LocalSettingsGroupEnabled
-import io.droidevs.taskjournal.presentation.settings.SettingsTileColors
-import io.droidevs.taskjournal.presentation.settings.SettingsTileDefaults
-import io.droidevs.taskjournal.presentation.settings.SettingsTileScaffold
+import io.droidevs.taskjournal.presentation.ui.settings.LocalSettingsGroupEnabled
+import io.droidevs.taskjournal.presentation.ui.settings.SettingsTileColors
+import io.droidevs.taskjournal.presentation.ui.settings.SettingsTileDefaults
+import io.droidevs.taskjournal.presentation.ui.settings.SettingsTileScaffold
 
 @Composable
 fun SettingsMenuLink(

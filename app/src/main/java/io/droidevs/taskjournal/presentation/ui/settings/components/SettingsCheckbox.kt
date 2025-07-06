@@ -1,9 +1,11 @@
-package io.droidevs.taskjournal.presentation.settings.components
+package io.droidevs.taskjournal.presentation.ui.settings.components
+
 
 import androidx.compose.foundation.selection.toggleable
-import androidx.compose.material3.RadioButton
-import androidx.compose.material3.RadioButtonColors
-import androidx.compose.material3.RadioButtonDefaults
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxColors
+import androidx.compose.material3.CheckboxDefaults
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
@@ -11,13 +13,14 @@ import androidx.compose.ui.semantics.SemanticsPropertyReceiver
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
-import io.droidevs.taskjournal.presentation.settings.LocalSettingsGroupEnabled
-import io.droidevs.taskjournal.presentation.settings.SettingsTileColors
-import io.droidevs.taskjournal.presentation.settings.SettingsTileDefaults
-import io.droidevs.taskjournal.presentation.settings.SettingsTileScaffold
+import io.droidevs.taskjournal.presentation.ui.settings.LocalSettingsGroupEnabled
+import io.droidevs.taskjournal.presentation.ui.settings.SettingsTileColors
+import io.droidevs.taskjournal.presentation.ui.settings.SettingsTileDefaults
+import io.droidevs.taskjournal.presentation.ui.settings.SettingsTileScaffold
+
 
 @Composable
-fun SettingsRadioButton(
+fun SettingsCheckbox(
     state: Boolean,
     title: @Composable () -> Unit,
     modifier: Modifier = Modifier,
@@ -25,23 +28,25 @@ fun SettingsRadioButton(
     icon: @Composable (() -> Unit)? = null,
     subtitle: @Composable (() -> Unit)? = null,
     colors: SettingsTileColors = SettingsTileDefaults.colors(),
-    checkboxColors: RadioButtonColors =
-        RadioButtonDefaults.colors(
-            selectedColor = colors.actionColor(enabled),
-            disabledSelectedColor = colors.actionColor(enabled),
+    checkboxColors: CheckboxColors =
+        CheckboxDefaults.colors(
+            checkedColor = colors.actionColor(enabled),
+            checkmarkColor = contentColorFor(colors.actionColor(enabled)),
+            disabledCheckedColor = colors.actionColor(enabled),
         ),
     tonalElevation: Dp = SettingsTileDefaults.Elevation,
     shadowElevation: Dp = SettingsTileDefaults.Elevation,
     semanticProperties: (SemanticsPropertyReceiver.() -> Unit) = {},
-    onClick: () -> Unit,
+    onCheckedChange: (Boolean) -> Unit,
 ) {
+    val update: (Boolean) -> Unit = { boolean -> onCheckedChange(boolean) }
     SettingsTileScaffold(
         modifier =
             Modifier.toggleable(
                 enabled = enabled,
                 value = state,
-                role = Role.RadioButton,
-                onValueChange = { onClick() },
+                role = Role.Switch,
+                onValueChange = { update(!state) },
             ).semantics(properties = semanticProperties).then(modifier),
         enabled = enabled,
         title = title,
@@ -51,11 +56,11 @@ fun SettingsRadioButton(
         tonalElevation = tonalElevation,
         shadowElevation = shadowElevation,
     ) {
-        RadioButton(
+        Checkbox(
             modifier = Modifier.clearAndSetSemantics { },
             enabled = enabled,
-            selected = state,
-            onClick = onClick,
+            checked = state,
+            onCheckedChange = update,
             colors = checkboxColors,
         )
     }

@@ -1,4 +1,4 @@
-package io.droidevs.taskjournal.presentation.settings.components
+package io.droidevs.taskjournal.presentation.ui.settings.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,10 +17,10 @@ import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import io.droidevs.taskjournal.presentation.settings.LocalSettingsGroupEnabled
-import io.droidevs.taskjournal.presentation.settings.SettingsTileColors
-import io.droidevs.taskjournal.presentation.settings.SettingsTileDefaults
-import io.droidevs.taskjournal.presentation.settings.SettingsTileScaffold
+import io.droidevs.taskjournal.presentation.ui.settings.LocalSettingsGroupEnabled
+import io.droidevs.taskjournal.presentation.ui.settings.SettingsTileColors
+import io.droidevs.taskjournal.presentation.ui.settings.SettingsTileDefaults
+import io.droidevs.taskjournal.presentation.ui.settings.SettingsTileScaffold
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

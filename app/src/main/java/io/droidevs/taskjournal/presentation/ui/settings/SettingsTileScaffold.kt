@@ -1,4 +1,4 @@
-package io.droidevs.taskjournal.presentation.settings
+package io.droidevs.taskjournal.presentation.ui.settings
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ListItem
