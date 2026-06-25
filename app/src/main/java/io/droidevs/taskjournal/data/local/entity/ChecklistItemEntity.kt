@@ -4,10 +4,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import io.droidevs.taskjournal.domain.model.AttachmentType
 
 @Entity(
-    tableName = "attachments",
+    tableName = "checklist_items",
     foreignKeys = [
         ForeignKey(
             entity = NoteEntity::class,
@@ -17,25 +16,18 @@ import io.droidevs.taskjournal.domain.model.AttachmentType
         )
     ]
 )
-data class AttachmentEntity(
+data class ChecklistItemEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     @ColumnInfo(name = "note_id", index = true)
     val noteId: Long,
-    val type: AttachmentType = AttachmentType.IMAGE,
-    val path: String = "",
-    @ColumnInfo(name = "file_name")
-    val fileName: String = "",
-    val description: String = "",
-    @ColumnInfo(name = "mime_type")
-    val mimeType: String? = null,
-    @ColumnInfo(name = "size_bytes")
-    val sizeBytes: Long? = null,
+    val text: String,
+    @ColumnInfo(name = "is_checked")
+    val isChecked: Boolean = false,
+    val position: Int = 0,
     @ColumnInfo(name = "created_at")
-    val createdAt: Long = System.currentTimeMillis()
+    val createdAt: Long = System.currentTimeMillis(),
+    @ColumnInfo(name = "updated_at")
+    val updatedAt: Long = System.currentTimeMillis()
 )
 
-data class NoteIdWithPath(
-    val noteId: Long,
-    val path: String
-)

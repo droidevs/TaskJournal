@@ -5,6 +5,8 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import io.droidevs.taskjournal.domain.model.JournalMood
+import io.droidevs.taskjournal.domain.model.NotePriority
 
 @Entity(
     tableName = "notes",
@@ -41,5 +43,33 @@ data class NoteEntity(
     @ColumnInfo(name = "is_pinned")
     val isPinned: Boolean = false,
     @ColumnInfo(name = "category_id")
-    val categoryId: Long? = null
+    val categoryId: Long? = null,
+    @ColumnInfo(name = "is_archived")
+    val isArchived: Boolean = false,
+    @ColumnInfo(name = "is_completed")
+    val isCompleted: Boolean = false,
+    @ColumnInfo(name = "priority")
+    val priority: NotePriority = NotePriority.NONE,
+    @ColumnInfo(name = "due_at")
+    val dueAt: Long? = null,
+    @ColumnInfo(name = "reminder_at")
+    val reminderAt: Long? = null,
+    @ColumnInfo(name = "completed_at")
+    val completedAt: Long? = null,
+    @ColumnInfo(name = "archived_at")
+    val archivedAt: Long? = null,
+    @ColumnInfo(name = "deleted_at")
+    val deletedAt: Long? = null,
+    @ColumnInfo(name = "recurrence_rule")
+    val recurrenceRule: String? = null,
+    @ColumnInfo(name = "mood")
+    val mood: JournalMood? = null,
+    @ColumnInfo(name = "location_name")
+    val locationName: String? = null,
+    @ColumnInfo(name = "location_latitude")
+    val locationLatitude: Double? = null,
+    @ColumnInfo(name = "location_longitude")
+    val locationLongitude: Double? = null,
+    @ColumnInfo(name = "weather_summary")
+    val weatherSummary: String? = null
 )

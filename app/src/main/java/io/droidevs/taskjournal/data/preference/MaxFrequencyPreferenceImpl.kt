@@ -1,9 +1,6 @@
 package io.droidevs.taskjournal.data.preference
 
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.intPreferencesKey
+import io.droidevs.taskjournal.domain.preference.AppPreferencesPreference
 import io.droidevs.taskjournal.domain.preference.MaxFrequencyPreference
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -12,16 +9,14 @@ import javax.inject.Singleton
 
 @Singleton
 class MaxFrequencyPreferenceImpl @Inject constructor(
-    private val dataStore: DataStore<Preferences>
+    private val appPreferences: AppPreferencesPreference
 ) : MaxFrequencyPreference {
-    private object Key {
-        val MAX_FREQUENCY = intPreferencesKey("max_frequency")
+    override val frequency: Flow<Int> = appPreferences.getPreferences().map { result ->
+        result.getOrNull()?.maxFrequency ?: 99
     }
-    private companion object { const val DEFAULT_VALUE = 99 }
-
-    override val frequency: Flow<Int> = dataStore.data.map { it[Key.MAX_FREQUENCY] ?: DEFAULT_VALUE }
 
     override suspend fun saveFrequency(frequency: Int) {
-        dataStore.edit { it[Key.MAX_FREQUENCY] = frequency }
+        appPreferences.updatePreferences { it.copy(maxFrequency = frequency.coerceAtLeast(1)) }
     }
 }
+

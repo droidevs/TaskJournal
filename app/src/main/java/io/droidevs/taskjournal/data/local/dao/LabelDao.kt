@@ -47,9 +47,18 @@ interface LabelDao {
                     ORDER BY CASE WHEN labelId IS NULL THEN 0 ELSE COUNT(*) END DESC, name ASC""")
     fun getAllByUsage(): Flow<List<LabelEntity>>
 
+    @Query("SELECT * FROM labels ORDER BY name ASC LIMIT :limit OFFSET :offset")
+    fun getPaged(offset: Int, limit: Int): Flow<List<LabelEntity>>
+
+    @Query("SELECT * FROM labels WHERE name LIKE '%' || :query || '%' ORDER BY name ASC LIMIT :limit OFFSET :offset")
+    fun search(query: String, offset: Int, limit: Int): Flow<List<LabelEntity>>
+
     /**
      * Get a label by its ID. Returns `null` if label doesn't exist.
      */
+    @Query("SELECT * FROM labels WHERE id == :id")
+    fun observeById(id: Long): Flow<LabelEntity?>
+
     @Query("SELECT * FROM labels WHERE id == :id")
     suspend fun getById(id: Long): LabelEntity?
 
@@ -79,4 +88,7 @@ interface LabelDao {
      */
     @Query("SELECT COUNT(*) FROM label_refs WHERE labelId == :labelId")
     suspend fun countRefs(labelId: Long): Long
+
+    @Query("DELETE FROM label_refs WHERE noteId == :noteId")
+    suspend fun clearRefsForNote(noteId: Long)
 }

@@ -1,28 +1,24 @@
 package io.droidevs.taskjournal.data.local.entity
 
-import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.Companion.CASCADE
 import androidx.room.PrimaryKey
-import kotlinx.android.parcel.Parcelize
-import kotlinx.serialization.Serializable
 
-@Serializable
-@Parcelize
 @Entity(
+    tableName = "comments",
     foreignKeys = [ForeignKey(
         entity = NoteEntity::class,
-        parentColumns = arrayOf("note_id"),
-        childColumns = arrayOf("note_comment_id"),
+        parentColumns = arrayOf("id"),
+        childColumns = arrayOf("note_id"),
         onDelete = CASCADE
     )]
 )
-data class Comment(
+data class CommentEntity(
     @PrimaryKey(autoGenerate = true) var id: Long = 0,
-    @ColumnInfo(name = "note_comment_id", index = true) val noteCommentId: Long,
+    @ColumnInfo(name = "note_id", index = true) val noteId: Long,
     var text: String = "",
-    @ColumnInfo(name = "create_time") var createTime: Long = System.currentTimeMillis(),
-    @ColumnInfo(name = "update_time") var updateTime: Long = System.currentTimeMillis(),
-) : Parcelable
+    @ColumnInfo(name = "created_at") var createdAt: Long = System.currentTimeMillis(),
+    @ColumnInfo(name = "updated_at") var updatedAt: Long = System.currentTimeMillis(),
+)

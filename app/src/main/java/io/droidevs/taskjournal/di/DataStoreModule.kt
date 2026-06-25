@@ -11,9 +11,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-// Define the DataStore instance via an extension property on Context
-private val Context.recurrenceDataStore: DataStore<Preferences> by preferencesDataStore(
-    name = "recurrence_settings"
+private val Context.appPreferencesDataStore: DataStore<Preferences> by preferencesDataStore(
+    name = "app_preferences"
 )
 
 @Module
@@ -25,6 +24,6 @@ object DataStoreModule {
     fun providePreferencesDataStore(
         @ApplicationContext context: Context
     ): DataStore<Preferences> {
-        return context.recurrenceDataStore
+        return context.appPreferencesDataStore
     }
 }

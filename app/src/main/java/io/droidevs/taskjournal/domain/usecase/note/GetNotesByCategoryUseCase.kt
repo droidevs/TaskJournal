@@ -3,7 +3,6 @@ package io.droidevs.taskjournal.domain.usecase.note
 import io.droidevs.taskjournal.domain.dispatchers.AppDispatchersProvider
 import io.droidevs.taskjournal.domain.model.NoteOrder
 import io.droidevs.taskjournal.domain.repository.NoteRepository
-import io.droidevs.taskjournal.presentation.viewmodels.SortOrder
 import kotlinx.coroutines.flow.flowOn
 
 class GetNotesByCategoryUseCase(

@@ -1,9 +1,8 @@
 package io.droidevs.taskjournal.domain.preference
 
 import io.droidevs.taskjournal.domain.result.Result
-import io.droidevs.taskjournal.domain.result.errors.DataError
 import io.droidevs.taskjournal.domain.result.errors.PreferenceError
-import io.droidevs.taskjournal.presentation.viewmodels.SortOrder
+import io.droidevs.taskjournal.domain.model.SortOrder
 import kotlinx.coroutines.flow.Flow
 
 interface SortOrderPreference {

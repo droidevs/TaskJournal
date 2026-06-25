@@ -1,39 +1,29 @@
 package io.droidevs.taskjournal.data.local.entity
 
-import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
-import kotlinx.parcelize.Parcelize
-import kotlinx.serialization.Serializable
 
-@Serializable
-@Entity(tableName = "labels")
-@Parcelize
+@Entity(
+    tableName = "labels",
+    indices = [
+        Index(value = ["name"], unique = true, name = "idx_labels_name")
+    ]
+)
 data class LabelEntity(
-    /**
-     * Label ID in the database.
-     * ID is transient during serialization since labels are mapped by ID in JSON,
-     * so repeating this field would be superfluous.
-     */
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    @Transient
     val id: Long = NO_ID,
-
-    /**
-     * Label name, cannot be blank.
-     */
-    @ColumnInfo(name = "name", index = true)
+    @ColumnInfo(name = "name")
     val name: String,
-
-    /**
-     * Whether the notes with this label will be hidden from active/archived destinations.
-     * These notes will only be visible in the label destinations.
-     */
+    @ColumnInfo(name = "color")
+    val color: Int? = null,
     @ColumnInfo(name = "hidden")
     val hidden: Boolean = false,
-) : Parcelable {
+    @ColumnInfo(name = "created_at")
+    val createdAt: Long = System.currentTimeMillis()
+) {
 
     companion object {
         const val NO_ID = 0L

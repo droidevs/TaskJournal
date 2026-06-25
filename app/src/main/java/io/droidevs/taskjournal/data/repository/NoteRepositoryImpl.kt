@@ -1,8 +1,6 @@
 package io.droidevs.taskjournal.data.repository
 
 import io.droidevs.taskjournal.data.local.dao.NoteDao
-import io.droidevs.taskjournal.data.local.entity.NoteWithCategory
-import io.droidevs.taskjournal.data.local.exceptions.asDatabaseResultFlow
 import io.droidevs.taskjournal.data.local.exceptions.runCatchingDatabaseResult
 import io.droidevs.taskjournal.data.mappers.toDomain
 import io.droidevs.taskjournal.data.mappers.toEntity
@@ -15,6 +13,7 @@ import io.droidevs.taskjournal.domain.result.errors.DatabaseError
 import androidx.sqlite.db.SimpleSQLiteQuery
 import androidx.sqlite.db.SupportSQLiteQuery
 import io.droidevs.taskjournal.data.local.exceptions.asDatabaseResultFlowPreservingResult
+import io.droidevs.taskjournal.data.local.entity.NoteWithDetails
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -190,7 +189,7 @@ class NoteRepositoryImpl @Inject constructor(
         )
     }
 
-    private fun Flow<List<NoteWithCategory>>.toResultFlow(): Flow<Result<List<Note>, DatabaseError>> {
+    private fun Flow<List<NoteWithDetails>>.toResultFlow(): Flow<Result<List<Note>, DatabaseError>> {
         return map { entities ->
             Result.Success(entities.map { it.toDomain() })
         }.asDatabaseResultFlowPreservingResult()
