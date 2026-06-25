@@ -59,13 +59,13 @@ fun <D, E : RootError> Flow<D>.asResultFlow(
     }
 }
 
-fun <D, E : RootError> Flow<Result<D, E>>.asResultFlow(
+fun <D, E : RootError> Flow<Result<D, E>>.asResultFlowPreservingResult(
     errorTransform: (Throwable) -> E,
     retries: Int = 2,
     delayMillis: Long = 1000
 ): Flow<Result<D, E>> = flow {
     try {
-        this@asResultFlow
+        this@asResultFlowPreservingResult
             .retry(retries.toLong()) { cause ->
                 delay(delayMillis)
                 cause is IOException // Only retry on network errors

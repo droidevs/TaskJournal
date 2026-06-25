@@ -14,6 +14,7 @@ import io.droidevs.taskjournal.domain.result.Result
 import io.droidevs.taskjournal.domain.result.errors.DatabaseError
 import androidx.sqlite.db.SimpleSQLiteQuery
 import androidx.sqlite.db.SupportSQLiteQuery
+import io.droidevs.taskjournal.data.local.exceptions.asDatabaseResultFlowPreservingResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -48,7 +49,7 @@ class NoteRepositoryImpl @Inject constructor(
             .map { entity ->
                 Result.Success(entity?.toDomain())
             }
-            .asDatabaseResultFlow()
+            .asDatabaseResultFlowPreservingResult()
     }
 
     override suspend fun insertNote(note: Note): Result<Long, DatabaseError> {
@@ -192,7 +193,7 @@ class NoteRepositoryImpl @Inject constructor(
     private fun Flow<List<NoteWithCategory>>.toResultFlow(): Flow<Result<List<Note>, DatabaseError>> {
         return map { entities ->
             Result.Success(entities.map { it.toDomain() })
-        }.asDatabaseResultFlow()
+        }.asDatabaseResultFlowPreservingResult()
     }
 
     private fun safePageSize(pageSize: Int): Int = pageSize.coerceAtLeast(1)

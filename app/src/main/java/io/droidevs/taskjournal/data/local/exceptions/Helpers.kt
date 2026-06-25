@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import io.droidevs.taskjournal.domain.result.Result
 import io.droidevs.taskjournal.domain.result.asResultFlow
+import io.droidevs.taskjournal.domain.result.asResultFlowPreservingResult
 import io.droidevs.taskjournal.domain.result.runCatchingWithResult
 
 suspend fun <D> runCatchingDatabaseResult(
@@ -44,7 +45,7 @@ fun <D> Flow<D>.asDatabaseResultFlow(): Flow<Result<D, DatabaseError>> = asResul
 /**
  * For flows that already emit Result types (just transforms errors)
  */
-fun <D> Flow<Result<D, DatabaseError>>.asDatabaseResultFlow(): Flow<Result<D, DatabaseError>> = asResultFlow(
+fun <D> Flow<Result<D, DatabaseError>>.asDatabaseResultFlowPreservingResult(): Flow<Result<D, DatabaseError>> = asResultFlowPreservingResult(
     errorTransform = { e -> e.toDatabaseError() }
 )
 

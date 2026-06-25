@@ -3,6 +3,7 @@ package io.droidevs.taskjournal.data.repository
 import io.droidevs.taskjournal.data.local.dao.CategoryDao
 import io.droidevs.taskjournal.data.local.entity.CategoryEntity
 import io.droidevs.taskjournal.data.local.exceptions.asDatabaseResultFlow
+import io.droidevs.taskjournal.data.local.exceptions.asDatabaseResultFlowPreservingResult
 import io.droidevs.taskjournal.data.local.exceptions.runCatchingDatabaseResult
 import io.droidevs.taskjournal.data.mappers.toDomainModel
 import io.droidevs.taskjournal.data.mappers.toEntity
@@ -27,7 +28,7 @@ class CategoryRepositoryImpl @Inject constructor(
             .map { entities ->
                 Result.Success(entities.map { it.toDomainModel() })
             }
-            .asDatabaseResultFlow()
+            .asDatabaseResultFlowPreservingResult()
     }
 
     override fun getCategoryById(id: Long): Flow<Result<Category?, DatabaseError>> {
@@ -35,7 +36,7 @@ class CategoryRepositoryImpl @Inject constructor(
             .map { entity ->
                 Result.Success(entity?.toDomainModel())
             }
-            .asDatabaseResultFlow()
+            .asDatabaseResultFlowPreservingResult()
     }
 
     override suspend fun insertCategory(category: Category): Result<Long, DatabaseError> {
@@ -71,6 +72,6 @@ class CategoryRepositoryImpl @Inject constructor(
             .map { entities ->
                 Result.Success(entities.map { it.toDomainModel() })
             }
-            .asDatabaseResultFlow()
+            .asDatabaseResultFlowPreservingResult()
     }
 } 
