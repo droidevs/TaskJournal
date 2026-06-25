@@ -1,4 +1,4 @@
-package io.droidevs.taskjournal.presentation.settings
+package io.droidevs.taskjournal.presentation.ui.settings
 
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.compositionLocalOf

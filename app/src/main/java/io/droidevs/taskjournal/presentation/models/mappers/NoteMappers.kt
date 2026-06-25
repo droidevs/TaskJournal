@@ -2,6 +2,7 @@ package io.droidevs.taskjournal.presentation.models.mappers
 
 import io.droidevs.taskjournal.domain.model.Note
 import io.droidevs.taskjournal.presentation.models.NoteUi
+import io.droidevs.taskjournal.presentation.utils.toDate
 
 
 fun Note.toUiModel(): NoteUi {
@@ -12,6 +13,6 @@ fun Note.toUiModel(): NoteUi {
         isPinned = isPinned,
         categoryId = category?.id?: -1,
         categoryName = category?.name?: "",
-        timestamp = createdAt,
+        date = createdAt.toDate(),
     )
 }

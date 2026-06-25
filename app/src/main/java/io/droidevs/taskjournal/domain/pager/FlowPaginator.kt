@@ -1,13 +1,17 @@
-package io.droidevs.taskjournal.domain.pager
+package io.droidevs.counterapp.domain.pager
 
-import io.droidevs.taskjournal.domain.result.Result
-import io.droidevs.taskjournal.domain.result.errors.DataError
-import io.droidevs.taskjournal.domain.result.onFailure
-import io.droidevs.taskjournal.domain.result.onSuccessSuspend
+import io.droidevs.bmicalc.domain.pager.Paginator
+import io.droidevs.counterapp.domain.result.Result
+import io.droidevs.counterapp.domain.result.errors.DataError
+import io.droidevs.counterapp.domain.result.onFailure
+import io.droidevs.counterapp.domain.result.onSuccessSuspend
+import io.droidevs.taskjournal.domain.pager.PaginationState
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 open class FlowPaginator<Key, Item>(
     private val initialKey: Key,
@@ -27,7 +31,7 @@ open class FlowPaginator<Key, Item>(
     private val _state = MutableStateFlow<PaginationState>(PaginationState.Idle)
     val state: StateFlow<PaginationState> = _state
 
-    override suspend fun loadNextItems() {
+    override suspend fun loadNextPage() {
         if (isMakingRequest) return
 
         isMakingRequest = true
@@ -43,19 +47,15 @@ open class FlowPaginator<Key, Item>(
         _state.value = PaginationState.Idle
     }
 
-    override suspend fun reset() {
+    override suspend fun refresh(){
+        if (isMakingRequest) return
         currentKey = initialKey
         _paginatorFlow.emit(emptyList())
-    }
-
-    suspend fun refresh(){
-        if (isMakingRequest) return
-        reset()
         _state.value = PaginationState.Refreshing
 
         isMakingRequest = true
 
-        loadNextItems()
+        loadNextPage()
 
         _state.value = PaginationState.Idle
         isMakingRequest = false

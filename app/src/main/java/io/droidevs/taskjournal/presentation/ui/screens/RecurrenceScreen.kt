@@ -1,21 +1,14 @@
 package io.droidevs.taskjournal.presentation.ui.screens
 
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import io.droidevs.taskjournal.domain.model.EndType
-import io.droidevs.taskjournal.domain.model.Period
 import io.droidevs.taskjournal.domain.model.Recurrence
 import io.droidevs.taskjournal.presentation.ui.components.recurence.RecurrencePicker
-import java.text.SimpleDateFormat
-import java.util.*
 
 // Assume your Recurrence class and its enums/constants are in this scope
 // e.g., import com.yourpackage.Recurrence

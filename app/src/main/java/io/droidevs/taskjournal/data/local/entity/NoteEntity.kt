@@ -36,9 +36,9 @@ data class NoteEntity(
     @ColumnInfo(name = "is_deleted")
     val isDeleted: Boolean = false,
     @ColumnInfo(name = "created_at")
-    val createdAt: LocalDateTime,
+    val createdAt: Long,
     @ColumnInfo(name = "updated_at")
-    val updatedAt: LocalDateTime,
+    val updatedAt: Long,
     @ColumnInfo(name = "is_pinned")
     val isPinned: Boolean = false,
     @ColumnInfo(name = "category_id")

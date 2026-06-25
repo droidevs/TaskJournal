@@ -1,7 +1,8 @@
-package io.droidevs.taskjournal.domain.pager
+package io.droidevs.bmicalc.domain.pager
 
-interface Paginator<key,Item> {
-    suspend fun loadNextItems()
+interface Paginator<Key,Item> {
 
-    suspend fun reset()
+    suspend fun loadNextPage()
+
+    suspend fun refresh()
 }
