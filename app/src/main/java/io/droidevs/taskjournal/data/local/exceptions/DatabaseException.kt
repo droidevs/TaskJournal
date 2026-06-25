@@ -1,4 +1,4 @@
-package io.droidevs.bmicalc.data.db.exceptions
+package io.droidevs.taskjournal.data.local.exceptions
 
 
 sealed class DatabaseException : Exception() {

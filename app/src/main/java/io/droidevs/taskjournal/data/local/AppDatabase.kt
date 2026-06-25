@@ -11,7 +11,7 @@ import io.droidevs.taskjournal.data.local.util.Converters
 
 @Database(
     entities = [NoteEntity::class, CategoryEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(Converters::class)

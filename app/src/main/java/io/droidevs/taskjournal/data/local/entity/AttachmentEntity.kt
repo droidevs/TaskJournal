@@ -15,7 +15,7 @@ data class AttachmentEntity(
     enum class Type { AUDIO, IMAGE, VIDEO, GENERIC, FILE }
 
     fun isMedia(): Boolean {
-        return type == Attachment.Type.IMAGE || type == Attachment.Type.VIDEO
+        return type == Type.IMAGE || type == Type.VIDEO
     }
 
     fun isEmpty() = path.isEmpty() && description.isEmpty() && fileName.isEmpty()

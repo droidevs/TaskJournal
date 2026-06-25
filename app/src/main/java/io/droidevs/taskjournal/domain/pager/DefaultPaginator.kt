@@ -1,19 +1,16 @@
-package io.droidevs.counterapp.domain.pager
+package io.droidevs.taskjournal.domain.pager
 
-import io.droidevs.bmicalc.domain.pager.Paginator
-import io.droidevs.counterapp.domain.result.Result
-import io.droidevs.counterapp.domain.result.errors.DatabaseError
-import io.droidevs.counterapp.domain.result.errors.Error
-import io.droidevs.counterapp.domain.result.onFailureSuspend
-import io.droidevs.counterapp.domain.result.onSuccessSuspend
-import io.droidevs.taskjournal.domain.pager.PaginationState
+import io.droidevs.taskjournal.domain.result.Result
+import io.droidevs.taskjournal.domain.result.errors.DatabaseError
+import io.droidevs.taskjournal.domain.result.onFailureSuspend
+import io.droidevs.taskjournal.domain.result.onSuccessSuspend
 
-abstract class DefaultPaginator<Key,Item>(
+class DefaultPaginator<Key, Item>(
     val initialKey : Key,
     private  val onLoadUpdated : (Boolean) -> Unit,
     private val onRequest : suspend (nextKey : Key) -> Result<List<Item>, DatabaseError>,
-    private val getNextKey : suspend (items : List<Item>) -> Key,
-    private val onError : suspend (error : Error) -> Unit,
+    private val getNextKey : suspend (key: Key, items : List<Item>) -> Key,
+    private val onError : suspend (error : DatabaseError) -> Unit,
     private val onSuccess : (items : List<Item> , newKey : Key) -> Unit
 ) : Paginator<Key, Item> {
 
@@ -34,7 +31,7 @@ abstract class DefaultPaginator<Key,Item>(
         isMakingRequest = false
 
         result.onSuccessSuspend { items ->
-            currentKey = getNextKey(items)
+            currentKey = getNextKey(currentKey, items)
 
             onSuccess(items,currentKey)
 
@@ -50,11 +47,10 @@ abstract class DefaultPaginator<Key,Item>(
         if (isMakingRequest) return
         currentKey = initialKey
 
-        isMakingRequest = true
-
         loadNextPage()
-
-        isMakingRequest = false
     }
 
+    suspend fun loadNextItems() = loadNextPage()
+
+    suspend fun reset() = refresh()
 }

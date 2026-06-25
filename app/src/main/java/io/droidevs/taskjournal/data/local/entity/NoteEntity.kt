@@ -5,9 +5,6 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import io.droidevs.taskjournal.domain.model.Note
-import java.time.LocalDateTime
-import java.util.Date
 
 @Entity(
     tableName = "notes",
@@ -15,15 +12,17 @@ import java.util.Date
         ForeignKey(
             entity = CategoryEntity::class,
             parentColumns = ["id"],
-            childColumns = ["categoryId"],
+            childColumns = ["category_id"],
             onDelete = ForeignKey.SET_NULL
         )
     ],
     indices = [
-        // getAllNotes getAllDeletedNotes
-        Index(value = ["isDeleted", "timestamp"], name = "idx_deleted_timestamp"),
-        // getNotesByFolderId
-        Index(value = ["categoryId", "isDeleted", "timestamp"], name = "idx_folder_deleted_timestamp")
+        Index(value = ["is_deleted", "updated_at"], name = "idx_notes_deleted_updated_at"),
+        Index(value = ["is_deleted", "title"], name = "idx_notes_deleted_title"),
+        Index(value = ["is_pinned", "is_deleted", "updated_at"], name = "idx_notes_pinned_deleted_updated_at"),
+        Index(value = ["is_pinned", "is_deleted", "title"], name = "idx_notes_pinned_deleted_title"),
+        Index(value = ["category_id", "is_deleted", "updated_at"], name = "idx_notes_category_deleted_updated_at"),
+        Index(value = ["category_id", "is_deleted", "title"], name = "idx_notes_category_deleted_title")
     ]
 )
 data class NoteEntity(

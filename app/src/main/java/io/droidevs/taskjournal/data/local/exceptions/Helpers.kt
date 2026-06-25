@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabaseLockedException
 import android.database.sqlite.SQLiteException
 import android.os.Build
 import android.os.TransactionTooLargeException
-import io.droidevs.bmicalc.data.db.exceptions.DatabaseException
 import io.droidevs.taskjournal.domain.result.errors.DatabaseError
 import io.droidevs.taskjournal.domain.result.runCatchingResult
 import kotlinx.coroutines.flow.Flow

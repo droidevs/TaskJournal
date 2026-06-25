@@ -11,7 +11,8 @@ fun NoteEntity.toDomain(): Note {
         title = title,
         content = content,
         createdAt = createdAt,
-        updatedAt = updatedAt
+        updatedAt = updatedAt,
+        isPinned = isPinned
     )
 }
 
@@ -22,6 +23,7 @@ fun Note.toEntity(): NoteEntity {
         content = content,
         createdAt = createdAt,
         updatedAt = updatedAt,
+        isPinned = isPinned,
         categoryId = category?.id
     )
 }

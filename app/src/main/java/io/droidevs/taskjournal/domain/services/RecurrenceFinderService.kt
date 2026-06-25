@@ -3,6 +3,7 @@ package io.droidevs.taskjournal.domain.services
 import io.droidevs.taskjournal.domain.model.EndType
 import io.droidevs.taskjournal.domain.model.Period
 import io.droidevs.taskjournal.domain.model.Recurrence
+import io.droidevs.taskjournal.domain.utils.compareDay
 import java.util.Calendar
 import java.util.GregorianCalendar
 import java.util.TimeZone
@@ -342,7 +343,7 @@ public class RecurrenceFinderService {
     private fun Recurrence.isEndDateExceeded(date: Long) =
         this.endType == EndType.BY_DATE && date.compareDay(this.endDate) > 0
 
-    private fun Long.compareDay(date: Long) : Int = this.compareDay(date, temp)
+    private fun Long.compareDay(date: Long): Int = compareDay(date, temp)
 
     private companion object {
         const val FEB_29 = 60

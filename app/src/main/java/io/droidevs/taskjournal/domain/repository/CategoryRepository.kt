@@ -2,14 +2,13 @@ package io.droidevs.taskjournal.domain.repository
 
 import io.droidevs.taskjournal.domain.model.Category
 import io.droidevs.taskjournal.domain.result.Result
-import io.droidevs.taskjournal.domain.result.errors.DataError
 import io.droidevs.taskjournal.domain.result.errors.DatabaseError
 import kotlinx.coroutines.flow.Flow
 
 interface CategoryRepository {
     fun getAllCategories(
-        page: Int,
-        pageSize: Int
+        page: Int = 1,
+        pageSize: Int = 20
     ): Flow<Result<List<Category>, DatabaseError>>
     fun getCategoryById(id: Long): Flow<Result<Category?, DatabaseError>>
     suspend fun insertCategory(category: Category): Result<Long, DatabaseError>
@@ -18,7 +17,7 @@ interface CategoryRepository {
     suspend fun deleteCategoryById(id: Long): Result<Unit, DatabaseError>
     fun searchCategories(
         query: String,
-        page: Int,
-        pageSize: Int
+        page: Int = 1,
+        pageSize: Int = 20
     ): Flow<Result<List<Category>, DatabaseError>>
 } 

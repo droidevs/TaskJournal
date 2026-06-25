@@ -1,6 +1,5 @@
 package io.droidevs.taskjournal.domain.pager
 
-import io.droidevs.counterapp.domain.result.errors.DataError
 import io.droidevs.taskjournal.domain.result.errors.DataError
 
 

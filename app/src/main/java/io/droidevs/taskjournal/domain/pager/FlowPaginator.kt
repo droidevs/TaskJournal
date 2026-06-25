@@ -1,17 +1,13 @@
-package io.droidevs.counterapp.domain.pager
+package io.droidevs.taskjournal.domain.pager
 
-import io.droidevs.bmicalc.domain.pager.Paginator
-import io.droidevs.counterapp.domain.result.Result
-import io.droidevs.counterapp.domain.result.errors.DataError
-import io.droidevs.counterapp.domain.result.onFailure
-import io.droidevs.counterapp.domain.result.onSuccessSuspend
-import io.droidevs.taskjournal.domain.pager.PaginationState
-import kotlinx.coroutines.CoroutineScope
+import io.droidevs.taskjournal.domain.result.Result
+import io.droidevs.taskjournal.domain.result.errors.DataError
+import io.droidevs.taskjournal.domain.result.onFailure
+import io.droidevs.taskjournal.domain.result.onSuccessSuspend
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 
 open class FlowPaginator<Key, Item>(
     private val initialKey: Key,
