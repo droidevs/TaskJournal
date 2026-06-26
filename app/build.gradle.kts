@@ -4,6 +4,7 @@ plugins {
     //alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
     id("kotlin-parcelize")  // Enables Parcelable generation
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -56,6 +57,11 @@ dependencies {
     // AndroidX Core
     implementation(libs.androidx.core.ktx)
 
+    implementation(libs.androidx.navigation.compose)
+
+    implementation(libs.kotlinx.serialization.json)
+
+    implementation(libs.androidx.compose.material.icons.extended)
     // Lifecycle
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)

@@ -6,11 +6,15 @@ sealed interface CategoryListScreenAction {
 
     data object RefreshCategories : CategoryListScreenAction
 
-    data class SelectCategory(val categoryId: Long) : CategoryListScreenAction
+    data class Search(val query: String) : CategoryListScreenAction
 
-    data class DeselectCategory(val categoryId: Long) : CategoryListScreenAction
+    data class OpenCategory(val categoryId: Long) : CategoryListScreenAction
 
-    data object SelectAllCategories : CategoryListScreenAction
+    data object CreateCategory : CategoryListScreenAction
 
-    data object DeselectAllCategories : CategoryListScreenAction
+    data class EditCategory(val categoryId: Long) : CategoryListScreenAction
+
+    data class DeleteCategory(val categoryId: Long) : CategoryListScreenAction
+
+    data object NavigateBack : CategoryListScreenAction
 }

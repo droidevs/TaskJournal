@@ -1,9 +1,16 @@
 package io.droidevs.taskjournal.presentation.core.actions
 
-sealed interface CategoryDetailsScreenAction {
+sealed interface CategoryDetailScreenAction {
 
-    data object DeleteCategory : CategoryDetailsScreenAction
+    data class NameChanged(val name: String) : CategoryDetailScreenAction
 
-    data object UpdateCategory : CategoryDetailsScreenAction
+    data class ColorChanged(val colorHex: String) : CategoryDetailScreenAction
 
+    data class IconChanged(val iconKey: String) : CategoryDetailScreenAction
+
+    data object SaveCategory : CategoryDetailScreenAction
+
+    data object DeleteCategory : CategoryDetailScreenAction
+
+    data object NavigateBack : CategoryDetailScreenAction
 }

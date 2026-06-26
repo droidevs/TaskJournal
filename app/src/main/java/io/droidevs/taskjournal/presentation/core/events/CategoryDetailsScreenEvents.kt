@@ -1,13 +1,16 @@
 package io.droidevs.taskjournal.presentation.core.events
 
-sealed interface CategoryDetailsScreenEvent {
+sealed interface CategoryDetailScreenEvent {
 
-    object NavigateBack : CategoryDetailsScreenEvent
+    data object NavigateBack : CategoryDetailScreenEvent
 
-    data object DeletedSuccessfully : CategoryDetailsScreenEvent
+    data object CategorySavedSuccessfully : CategoryDetailScreenEvent
 
-    data object DeleteFailed : CategoryDetailsScreenEvent
+    data object CategorySaveFailed : CategoryDetailScreenEvent
 
-    data object NavigateToEditScreen : CategoryDetailsScreenEvent
+    data object CategoryDeletedSuccessfully : CategoryDetailScreenEvent
 
+    data object CategoryDeleteFailed : CategoryDetailScreenEvent
+
+    data object ValidationNameRequired : CategoryDetailScreenEvent
 }
